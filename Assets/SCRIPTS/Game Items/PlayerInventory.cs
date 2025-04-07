@@ -5,9 +5,13 @@ public class PlayerInventory : MonoBehaviour
 {
     private List<GameItem> inventory = new List<GameItem>();
     private GameItem equippedItem;
+    public QuestManager questManager;
 
     public Transform weaponHolder;
-
+    private void Start()
+    {
+        questManager = FindFirstObjectByType<QuestManager>();
+    }
     void Update()
     {
         HandleItemUse();
@@ -55,7 +59,7 @@ public class PlayerInventory : MonoBehaviour
         item.Pickup();               // Hide from world (optional)
         inventory.Add(item);
         EquipItem(item);             // Auto-equip on pickup
-        
+        questManager?.ReportItemPickup(item); // Notify quests
 
     }
     public void RemoveItem(GameItem item)

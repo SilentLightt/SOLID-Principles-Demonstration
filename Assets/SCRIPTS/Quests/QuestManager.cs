@@ -5,6 +5,7 @@ public class QuestManager : MonoBehaviour
 {
     private List<IQuest> activeQuests = new List<IQuest>();
     private List<IKillTracker> killTrackers = new List<IKillTracker>();
+    private List<IFetchTracker> fetchTrackers = new List<IFetchTracker>();
 
     [SerializeField] private QuestUI questUI;
 
@@ -22,6 +23,33 @@ public class QuestManager : MonoBehaviour
         {
             questUI.SetQuest(quest);
         }
+        if (quest is IFetchTracker fetchTracker)
+        {
+            fetchTrackers.Add(fetchTracker);
+        }
+
+    }
+    public void ReportExplore(string locationName)
+    {
+        foreach (var quest in activeQuests)
+        {
+            if (quest is ExploreQuest exploreQuest)
+            {
+                exploreQuest.ReportExplore(locationName);
+            }
+        }
+
+        questUI?.UpdateUI();
+    }
+
+    public void ReportItemPickup(GameItem item)
+    {
+        foreach (var tracker in fetchTrackers)
+        {
+            tracker.RegisterItemPickup(item);
+        }
+
+        questUI?.UpdateUI();
     }
 
     public void ReportKill()

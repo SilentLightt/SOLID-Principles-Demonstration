@@ -1,30 +1,35 @@
-//using UnityEngine;
-//public class ExploreQuest : QuestBase, IExploreQuest
-//{
-//    private string targetArea;
-//    private bool areaEntered;
+using UnityEngine;
 
-//    public ExploreQuest(string name, string areaName) : base(name)
-//    {
-//        targetArea = areaName;
-//        areaEntered = false;
-//    }
+public class ExploreQuest : IQuest, IQuestProgress
+{
+    public string QuestName { get; private set; }
+    public bool IsComplete { get; private set; }
 
-//    public void OnAreaEntered(string areaName)
-//    {
-//        if (areaName == targetArea)
-//        {
-//            areaEntered = true;
-//            CheckProgress();
-//        }
-//    }
+    public int CurrentProgress => IsComplete ? 1 : 0;
+    public int Goal => 1;
 
-//    public override void CheckProgress()
-//    {
-//        if (areaEntered && !IsCompleted)
-//        {
-//            IsCompleted = true;
-//            Debug.Log($"{QuestName} completed! Explored {targetArea}.");
-//        }
-//    }
-//}
+    private string targetLocationName;
+
+    public ExploreQuest(string questName, string locationName)
+    {
+        QuestName = questName;
+        targetLocationName = locationName;
+        IsComplete = false;
+    }
+
+    public void StartQuest()
+    {
+        // Optional startup logic
+    }
+
+    public void ReportExplore(string exploredLocation)
+    {
+        if (!IsComplete && exploredLocation == targetLocationName)
+        {
+            IsComplete = true;
+            Debug.Log($"ExploreQuest Complete: {QuestName}");
+        }
+    }
+
+    public string TargetLocation => targetLocationName;
+}

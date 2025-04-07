@@ -60,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if (healthText != null)
             healthText.text = $"Health: {pcurrentHealth}/{pmaxHealth}";

@@ -18,6 +18,7 @@ public class HealthPotion : GameItem
         {
             playerHealth.RestoreHealth(HealAmount);
             Debug.Log($"{ItemName} used! Restored {HealAmount} HP.");
+            playerHealth.UpdateUI();  // Add this line to update the UI
 
             if (healEffect != null)
             {

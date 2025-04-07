@@ -2683,7 +2683,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 315902438931071447, guid: 9ffe67ed14348d64eba8d7eee454746f, type: 3}
   m_PrefabInstance: {fileID: 7210959642964346411}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1235678727
+--- !u!114 &1235678732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2692,10 +2692,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1235678722}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e01ee4cab0ae5e94c99526f5f24a3fda, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b7fb212c6852074ab0f48a47233b92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaName: 
+  locationName: Zone
 --- !u!1 &1260632299
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9910ffb1cc25a1643b0c32ce10da390e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questManager: {fileID: 0}
   weaponHolder: {fileID: 1087652806}
 --- !u!1001 &1308483882
 PrefabInstance:
@@ -4195,6 +4196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questText: {fileID: 1554876035461036734}
+  completeDisplayDuration: 3
 --- !u!1 &2116077754
 GameObject:
   m_ObjectHideFlags: 0
@@ -12143,7 +12145,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 315902438931071447, guid: 9ffe67ed14348d64eba8d7eee454746f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1235678727}
+      addedObject: {fileID: 1235678732}
   m_SourcePrefab: {fileID: 100100000, guid: 9ffe67ed14348d64eba8d7eee454746f, type: 3}
 --- !u!1 &7234531036184886593
 GameObject:

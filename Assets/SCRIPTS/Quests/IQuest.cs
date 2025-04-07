@@ -4,6 +4,14 @@ public interface IQuest
     bool IsComplete { get; }
     void StartQuest();
 }
+public interface IFetchTracker
+{
+    void RegisterItemPickup(GameItem item);
+}
+public interface IFetchQuest : IQuestProgress
+{
+    string RequiredItemName { get; }
+}
 
 public interface IKillTracker
 {
