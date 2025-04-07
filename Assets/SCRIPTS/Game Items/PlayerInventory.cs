@@ -55,6 +55,8 @@ public class PlayerInventory : MonoBehaviour
         item.Pickup();               // Hide from world (optional)
         inventory.Add(item);
         EquipItem(item);             // Auto-equip on pickup
+        
+
     }
     public void RemoveItem(GameItem item)
     {

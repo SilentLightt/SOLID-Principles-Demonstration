@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 50;
     private int currentHealth;
+    private QuestManager questManager;
 
     [SerializeField] private TextMeshProUGUI healthText; // Assign in Inspector
 
@@ -12,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
+        questManager = FindFirstObjectByType<QuestManager>(); // Could use DI container or event instead
+
     }
 
     public void TakeDamage(int damage)
@@ -26,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        questManager?.ReportKill(); // Notify quest manager
         Destroy(gameObject);
     }
 
