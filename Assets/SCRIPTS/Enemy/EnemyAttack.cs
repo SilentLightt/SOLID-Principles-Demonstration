@@ -6,7 +6,7 @@ public class EnemyAttack : MonoBehaviour
     public float attackRange = 2f;
     public int attackDamage = 10;
     public float attackCooldown = 1.5f;
-    public GameObject damageTextPrefab; // Assign in Inspector
+    public GameObject damageTextPrefab; 
 
     public Transform target;
     private float lastAttackTime;
@@ -38,10 +38,10 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = true;
         lastAttackTime = Time.time;
         movementController.StopMoving();
-        animationController.PlayAttackAnimation(); // Animation event will trigger ApplyDamage
+        animationController.PlayAttackAnimation(); 
     }
 
-    public void ApplyDamage() // Called by Animation Event
+    public void ApplyDamage() 
     {
         if (target == null) return;
 
@@ -53,34 +53,29 @@ public class EnemyAttack : MonoBehaviour
         }
 
         target.GetComponent<PlayerHealth>()?.TakeDamage(attackDamage);
-        SpawnDamageText(attackDamage); // Spawn text when damage is applied
+        SpawnDamageText(attackDamage); 
     }
 
     private void SpawnDamageText(int damage)
     {
         if (damageTextPrefab != null && target != null)
         {
-            // Generate a small random offset near the target
             Vector3 spawnPosition = target.position;
 
-            // Create an empty parent object to hold the text
             GameObject textHolder = new GameObject("DamageTextHolder");
             textHolder.transform.position = spawnPosition;
 
-            // Instantiate the text and parent it to the holder
             GameObject textInstance = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity);
             textInstance.transform.SetParent(textHolder.transform, true); // Maintain world position
 
-            // Set the damage text
             textInstance.GetComponent<TextMeshPro>().text = damage.ToString();
 
-            // Destroy both after animation ends
             Destroy(textHolder, 1.5f);
         }
     }
 
 
-    public void EndAttack() // Called at the end of the animation
+    public void EndAttack()
     {
         isAttacking = false;
         movementController.ResumeMoving();
